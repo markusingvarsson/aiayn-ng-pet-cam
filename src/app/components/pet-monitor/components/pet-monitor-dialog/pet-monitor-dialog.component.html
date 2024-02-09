@@ -1,0 +1,11 @@
+<div #imageView id="imageView" class="imageView">
+  @if(imageUrl) {
+  <img
+    [src]="imageUrl"
+    width="640"
+    height="480"
+    #eventImage
+    alt="Captured Image"
+  />
+  }
+</div>

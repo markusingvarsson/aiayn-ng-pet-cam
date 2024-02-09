@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  height: calc(100% - 64px);
+}
+
+.pet-monitor-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+mat-stepper {
+  height: 100%;
+  width: 40%;
+}
+
+app-pet-monitor-video {
+  height: 100%;
+  width: 100%;
+}
+
+.alert-container {
+  display: flex;
+  align-items: center;
+}
+
+@keyframes flashOrange {
+  0%,
+  100% {
+    background-color: orange;
+  }
+  50% {
+    background-color: transparent;
+  }
+}
+
+.flashing-orange {
+  animation: flashOrange 1s ease-in-out 5;
+}
+
+@media screen and (max-width: 600px) {
+  .pet-monitor-container {
+    flex-direction: column;
+  }
+
+  mat-stepper {
+    width: 100%;
+  }
+}

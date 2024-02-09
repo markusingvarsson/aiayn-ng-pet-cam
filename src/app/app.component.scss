@@ -1,0 +1,50 @@
+:host,
+.header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+h1 {
+  color: #f8f8f8;
+  font-weight: 100;
+  font-size: 22pt;
+}
+
+.header {
+  background-color: aqua;
+  background-repeat: no-repeat;
+}
+
+.mat-toolbar-title {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mat-toolbar-title:hover,
+.mat-toolbar-title:focus {
+  text-decoration: none; /* Removes underline on hover/focus */
+  color: inherit; /* Keeps the same color on hover/focus */
+}
+
+.header {
+  clear: both;
+  text-align: left;
+}
+
+.header p {
+  color: #717171;
+  font-style: italic;
+  padding: 5px 0 0 0;
+  font-weight: 600;
+  font-size: 115%;
+}
+
+.mat-toolbar-spacer {
+  flex: 1 1 auto;
+}

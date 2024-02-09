@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ngpetcam": {
+      "hosting": {
+        "ng-pet-cam": [
+          "ngpetcam"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ngpetcam"
+  }
+}

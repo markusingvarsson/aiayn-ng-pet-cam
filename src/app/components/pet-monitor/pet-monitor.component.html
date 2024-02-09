@@ -1,0 +1,96 @@
+<div class="pet-monitor-container">
+  <mat-vertical-stepper
+    linear
+    #stepper
+    (selectedIndexChange)="this.step$.next($event)"
+  >
+    <mat-step [completed]="true">
+      <ng-template matStepLabel>Camera</ng-template>
+      <p>
+        Welcome, to start, allow access to your camera once the button becomes
+        enabled below.
+      </p>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="startFrontCamera(); stepper.next()"
+        id="cameraButton"
+        class="circularButton"
+      >
+        Enable Front Camera
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="startRearCamera(); stepper.next()"
+        id="cameraButton"
+        class="circularButton"
+      >
+        Enable Rear Camera
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="startingCamera = false"
+        id="cameraButton"
+        class="circularButton"
+      >
+        Stop Camera
+      </button>
+    </mat-step>
+    <mat-step [completed]="selectedItemCategory && selectedPetCategory">
+      <ng-template matStepLabel>Choose Pet and Object</ng-template>
+      <div class="mat-step-content-container">
+        <form>
+          <h1>Choose Your Favorite Pet!</h1>
+          <mat-form-field appearance="fill">
+            <mat-label>Pet</mat-label>
+            <mat-select name="pet" [(ngModel)]="selectedPetCategory">
+              @for (pet of availablePets; track pet.value) {
+              <mat-option [value]="pet.value">{{ pet.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <h1>Object to Monitor</h1>
+          <mat-form-field appearance="fill">
+            <mat-label>Detect Object</mat-label>
+            <mat-select name="item" [(ngModel)]="selectedItemCategory">
+              @for (item of avaibleItemsToMonitor; track item.value) {
+              <mat-option [value]="item.value">{{ item.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Events</ng-template>
+      <h1>Events</h1>
+      @for (event of detectionEvents; track $index) {
+      <div class="alert-container">
+        <span class="flashing-orange">
+          {{ event.dateTime | date : "medium" }}
+        </span>
+        <button
+          color="primary"
+          mat-icon-button
+          aria-label="Notification icon button "
+          (click)="showEvent(event)"
+        >
+          <mat-icon>notifications</mat-icon>
+        </button>
+      </div>
+      }
+    </mat-step>
+  </mat-vertical-stepper>
+
+  @defer(when (startingCamera)) { @if (startingCamera) {
+  <app-pet-monitor-video
+    [selectedItemCategory]="selectedItemCategory"
+    [selectedPetCategory]="selectedPetCategory"
+    (detectionEventsChange)="onDetectionEventsChange($event)"
+    [cameraMode]="cameraMode"
+  ></app-pet-monitor-video>
+  } }
+</div>
